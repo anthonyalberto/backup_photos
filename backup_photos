@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+source ~/.b2.cfg
+
+echo "Backing up $B2_LOCAL_FOLDER to the cloud ($B2_REMOTE_FOLDER)"
+echo ""
+
+b2 authorize-account $B2_KEY_ID $B2_KEY
+b2 sync --replaceNewer --delete $B2_LOCAL_FOLDER $B2_REMOTE_FOLDER
+
+read -p "Sync complete. You can close the window."
